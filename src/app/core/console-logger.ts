@@ -5,7 +5,7 @@ import {Logger} from './logger';
 @Injectable({providedIn:'root'})
 export class ConsoleLogger extends Logger{
   log(message:string){
-    console.log(message);
+    console.log('warning:',message);
   }
   logInfo(message:string){
     console.log('Info:',message);

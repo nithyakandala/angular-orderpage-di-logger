@@ -7,15 +7,16 @@ import { AppComponent } from './app.component';
 
 import {LineItemComponent} from './line-item/line-item.component';
 import { OrderComponent } from './order/order.component';
-import { OrderService, ConsoleLogger, Logger, HttpLogger, BASE_API_URL} from './core';
+import { OrderService, ConsoleLogger, Logger, HttpLogger, BASE_API_URL, MiniLogger} from './core';
 
 @NgModule({
   imports:      [ BrowserModule, FormsModule, HttpClientModule ],
   declarations: [ AppComponent,  LineItemComponent, OrderComponent ],
   bootstrap:    [ AppComponent ],
   providers: [OrderService,
-  {provide:Logger, useClass:ConsoleLogger},
-  {provide:BASE_API_URL, useValue:'https://reqres.in/api/'}
+  {provide:Logger, useClass:HttpLogger},
+  {provide:BASE_API_URL, useValue:'https://reqres.in/api/'},
+  {provide:MiniLogger, useExisting:Logger}
   ]
 })
 export class AppModule { }

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {LineItem} from '../core';
 import {OrderService} from '../core';
 import {Observable} from 'rxjs';
+
+import{MiniLogger} from '../core';
 @Component({
   selector: 'app-order',
   templateUrl: './order.component.html'
@@ -9,7 +11,7 @@ import {Observable} from 'rxjs';
 export class OrderComponent implements OnInit {
 lineItems:Observable<LineItem[]>;
 
-  constructor(private orderService:OrderService) { }
+  constructor(private orderService:OrderService, private miniLogger:MiniLogger) { }
 
   ngOnInit() {
     this.lineItems=this.orderService.lineItems;
@@ -17,7 +19,7 @@ lineItems:Observable<LineItem[]>;
 
   }
   onLineItemSaved(lineItem:LineItem){
-    console.log('received', lineItem)
+    this.miniLogger.log('received lineitem saved message', lineItem)
     this.orderService.saveLineItem(lineItem);
   }
 
