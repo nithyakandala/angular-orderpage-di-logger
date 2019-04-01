@@ -3,3 +3,4 @@ export * from './order.service';
 export * from './console-logger';
 export * from './logger';
 export * from './http-logger';
+export * from './token';

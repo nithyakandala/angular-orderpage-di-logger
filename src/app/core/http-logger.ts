@@ -1,11 +1,12 @@
-import {Injectable} from '@angular/core';
+import {Injectable, Inject} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Logger} from './logger';
+import {BASE_API_URL} from './token';
 
 @Injectable({providedIn:'root'})
 export class HttpLogger extends Logger{
-  private baseApiUrl='https://reqres.in/api/';
-  constructor(private $http:HttpClient){
+
+  constructor(private $http:HttpClient, @Inject(BASE_API_URL) private baseApiUrl){
     super();
   }
   log(message:string){
